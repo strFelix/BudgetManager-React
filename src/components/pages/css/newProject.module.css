@@ -1,0 +1,13 @@
+.newPeojectContainer{
+    width: 450px;
+    margin: 0 auto;
+    padding: 3em;
+}
+
+.newPeojectContainer h1{
+    margin-bottom: 0.5em;
+}
+
+.newPeojectContainer p{
+    color: #7b7b7b;
+}
