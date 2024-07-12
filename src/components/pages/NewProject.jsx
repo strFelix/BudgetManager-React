@@ -4,7 +4,6 @@ import styles from "./css/newProject.module.css";
 import ProjectForm from "../project/ProjectForm";
 
 const NewProject = () => {
-  
   const navigate = useNavigate();
   function CreatePost(project) {
     project.cost = 0;
@@ -22,7 +21,10 @@ const NewProject = () => {
         console.log("Success:", data);
       })
       // redirect
-      .then(navigate("/projects"))
+      .then(() => {
+        const state = { message: "Projeto criado com sucesso!", type:"success"};
+        navigate("/projects", {state});
+      })
       .catch((err) => console.error(err));
   }
 
@@ -30,7 +32,10 @@ const NewProject = () => {
     <div className={styles.newPeojectContainer}>
       <h1>Criar projeto</h1>
       <p>Crie seu projeto para depois adicionar os serviços!</p>
-      <ProjectForm handleSubmit={CreatePost} btnText="Criar projeto"></ProjectForm>
+      <ProjectForm
+        handleSubmit={CreatePost}
+        btnText="Criar projeto"
+      ></ProjectForm>
     </div>
   );
 };

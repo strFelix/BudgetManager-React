@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { useLocation } from "react-router-dom";
+import Message from "../layout/Message";
 
 const Projects = () => {
-  return (
-    <div>Projects</div>
-  )
-}
+  
+  const location = useLocation();
+  let message = location.state ? location.state.message : "";
+  let type = location.state ? location.state.type : "";
 
-export default Projects
+  return (
+    <div>
+      <h1>Meus projetos</h1>
+      <Message type={type} msg={message}/>
+    </div>
+  );
+};
+
+export default Projects;
