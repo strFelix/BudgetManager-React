@@ -4,7 +4,11 @@ import styles from './css/projectCard.module.css'
 import { Link } from 'react-router-dom'
 
 const ProjectCard = ({id, name, budget, category, handleRemove}) => {
-  return (
+    const remove = (e) => {
+        e.preventDefault()
+        handleRemove(id)
+    }
+    return (
     <div className={styles.projectCard}>
         <h4>{name}</h4>
         <p>
@@ -17,9 +21,9 @@ const ProjectCard = ({id, name, budget, category, handleRemove}) => {
             <Link to="/">
                 <BsPencil /> Editar
             </Link>
-            <Link to="/">
+            <button onClick={remove}>
                 <BsFillTrashFill /> Excluir
-            </Link>
+            </button>
         </div>
     </div>
   )

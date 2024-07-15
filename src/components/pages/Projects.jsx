@@ -11,9 +11,10 @@ import Loading from "../layout/Loading";
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
+  const [projectMessage, setProjectMessage] = useState({ type: "", msg: "" });
   const location = useLocation();
-  let message = location.state ? location.state.message : "";
-  let type = location.state ? location.state.type : "";
+  let message = location.state?.message || "";
+  let type = location.state?.type || "";
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,8 +30,24 @@ const Projects = () => {
         setRemoveLoading(true);
       })
       .catch((err) => console.log(err));
-    }, 1500); // Delay de 2000 milissegundos (2 segundos)
+    }, 1500); 
   }, []);
+
+  const removeProject = (id) => {
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((resp) => resp.json())
+    .then(() => {
+      const newProjects = projects.filter((project) => project.id !== id);
+      setProjects(newProjects);
+      setProjectMessage({ type: 'alert', msg: 'Projeto removido com sucesso.' });
+    })
+    .catch((err) => console.log(err));
+  }
 
   return (
     <div className={styles.projectContainer}>
@@ -38,7 +55,8 @@ const Projects = () => {
         <h1>Meus projetos</h1>
         <LinkButton to="/newproject" text="Criar projeto"></LinkButton>
       </div>
-      <Message type={type} msg={message} />
+      {message && <Message type={type} msg={message} />}
+      {projectMessage && <Message type={projectMessage.type} msg={projectMessage.msg}/>}
       <Container customClass="start">
         {projects.length > 0 &&
           projects.map((project) => (
@@ -48,6 +66,7 @@ const Projects = () => {
               name={project.name}
               budget={project.budget}
               category={project.category.name}
+              handleRemove={removeProject}
             />
           ))}
         {!removeLoading && <Loading />}

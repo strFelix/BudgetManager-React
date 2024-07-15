@@ -24,6 +24,7 @@ const NewProject = () => {
       .then(() => {
         const state = { message: "Projeto criado com sucesso!", type:"success"};
         navigate("/projects", {state});
+        state = null;
       })
       .catch((err) => console.error(err));
   }
