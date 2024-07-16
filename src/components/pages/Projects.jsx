@@ -30,7 +30,7 @@ const Projects = () => {
         setRemoveLoading(true);
       })
       .catch((err) => console.log(err));
-    }, 1500); 
+    }, 500  ); 
   }, []);
 
   const removeProject = (id) => {
