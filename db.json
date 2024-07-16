@@ -2,18 +2,25 @@
   "projects": [
     {
       "id": "4245",
-      "name": "Projeto1",
+      "name": "Projeto 1",
       "budget": "10000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": []
+      "cost": 5000,
+      "services": [
+        {
+          "name": "Contratar dev. Next",
+          "cost": "5000",
+          "description": "Profissional com experiência em desesnvolvimento com React/Next",
+          "id": "82356e2c-c83d-4f0d-ba48-62bb1bd8f224"
+        }
+      ]
     },
     {
       "id": "2db3",
-      "name": "Projeto2",
+      "name": "Projeto 2",
       "budget": "1000",
       "category": {
         "id": "2",
@@ -24,7 +31,7 @@
     },
     {
       "id": "d3ca",
-      "name": "Projeto3",
+      "name": "Projeto 3",
       "budget": "9000",
       "category": {
         "id": "3",
